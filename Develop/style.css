@@ -17,3 +17,13 @@ h1{
     color: white;
     text-align: center;
 }
+
+aside{
+    position: absolute;
+    width: 25%;
+    float: left;
+    background-color: teal;
+    margin-top: 0px;
+    top: 80px;
+    bottom: 0px;
+}
