@@ -1,8 +1,14 @@
+
+* {
+    box-sizing: border-box;
+  }
+
 body{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 18px;
     line-height: 1;
     padding-bottom: 20px;
+   margin: 0px;
 }
 
 header {
@@ -11,6 +17,12 @@ header {
     height: 80px;
     padding: 10px;
 }
+main{
+    padding: 0px;
+    margin: 0px;
+    overflow: auto;
+}
+
 
 h1{
     line-height: 60px;
@@ -19,11 +31,26 @@ h1{
 }
 
 aside{
-    position: absolute;
     width: 25%;
+    height:700px;
     float: left;
-    background-color: teal;
-    margin-top: 0px;
-    top: 80px;
-    bottom: 0px;
+    background-color: rgb(231, 229, 229);
+  
+}
+
+.today{
+    width: 70%;
+    height: 360px;
+    float: left;
+    border: 2px solid rgb(231, 229, 229);
+    border-radius: 10px;
+    margin: 10px;
+}
+.fiveDays{
+    width: 70%;
+    height: 200px;
+    float: left;
+    border: 2px solid rgb(231, 229, 229);
+    border-radius: 10px;
+    margin: 10px;
 }
