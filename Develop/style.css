@@ -77,6 +77,7 @@ button:hover {
     border: 2px solid rgb(231, 229, 229);
     border-radius: 10px;
     margin: 10px;
+    color:black;
 }
 .fiveDays{
     width: 70%;
