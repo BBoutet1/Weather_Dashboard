@@ -33,10 +33,32 @@ h1{
 aside{
     width: 25%;
     height:700px;
+    padding: 5px;
     float: left;
     background-color: rgb(231, 229, 229);
   
 }
+
+.input-container{
+    display: flex;  
+}
+
+.input-field:focus {
+    border: 2px solid rgb(132, 230, 205);
+  }
+
+button{
+    background: rgb(132, 230, 205);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+button:hover {
+    opacity: 1;
+  }
+
 
 .today{
     width: 70%;
@@ -53,4 +75,22 @@ aside{
     border: 2px solid rgb(231, 229, 229);
     border-radius: 10px;
     margin: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
 }
+#period{
+    width: 100%;
+    margin: 0 10px 0 10px;
+    
+}
+
+.five{
+    background-color: rgb(132, 230, 205);
+    border-radius: 10px;
+    margin: 5px;
+    width: 120px;
+    height: 150px;
+    float: left;
+}
+

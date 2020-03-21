@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Develop/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Develop/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Wheather Dashboard</title>
 </head>
 <body>
@@ -15,10 +16,25 @@
     </header>
     <main>
         <aside>
+            <form>
+                <label>Search for a city</label><br>
+                <div class="input-container" >
+                    <input  class="input-field" type="text" id="lname" placeholder="Toronto">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
         </aside>
         <section class="today">
         </section>
         <section class="fiveDays">
+          <!--   <h3 id= "period">5 days forecast</h3> -->
+            <div id="day1" class="five"></div>
+            <div id="day2" class="five"></div>
+            <div id="day3" class="five"></div>
+            <div id="day4" class="five"></div>
+            <div id="day5" class="five"></div>
         </section>
     </main>
 
