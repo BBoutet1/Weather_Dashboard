@@ -35,13 +35,19 @@ aside{
     height:700px;
     padding: 5px;
     float: left;
+    overflow: auto;
     background-color: rgb(231, 229, 229);
   
 }
 
-.input-container{
-    display: flex;  
-}
+.input-field {
+    height: 100%;
+    width:70%;
+    max-width: 200px;
+    min-width: 132px;
+    margin: 0px;
+    float: left;
+  }
 
 .input-field:focus {
     border: 2px solid rgb(132, 230, 205);
@@ -53,6 +59,10 @@ button{
     text-align: center;
     cursor: pointer;
     opacity: 0.8;
+    margin: 0px;
+    width: 35px;
+    height: 28px;
+    float: left;
 }
 
 button:hover {
