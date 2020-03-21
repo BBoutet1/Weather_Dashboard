@@ -32,10 +32,22 @@ $(document).ready(function(){
             $(".city").html("<h2>" + response.name + ", " +response.sys.country+"</h2>");
             $(".city").append("<h4>" +today + "</h4>");
 
-            $(".temp").text("Wind Speed: " + response.main.temp);
-            $(".humidity").text("Humidity: " + response.main.humidity);
-            $(".wind").text("Wind Speed: " + response.wind.speed);
+            $(".temp").text("Temperature: " + response.main.temp+ " °F");
+            $(".humidity").text("Humidity: " + response.main.humidity+" %");
+            $(".wind").text("Wind Speed: " + response.wind.speed+" MPH");
+            // Uv index data
+            const queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?appid="+APIKey+"&lat="
+            +response.coord.lat+"&lon="+response.coord.lon;
+            $.ajax({
+                url: queryURL2,
+                method: "GET"
+                })
 
+                .then(function(response2) {
+                    console.log(response2);
+                    $(".uvIndex").text("UV index: " + response.wind.speed);
+                
+                });
           
             
 
