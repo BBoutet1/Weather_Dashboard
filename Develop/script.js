@@ -95,6 +95,13 @@ $(document).ready(function(){
             history.splice(index,1);
         }
 
+        //No more than 10 entries in search history.
+        while( history.length > 9){
+            history.splice(history.length-1,1);
+        }
+
+
+
 
         // Add the city to search history in the first position
         history.splice(0,0,city); 
