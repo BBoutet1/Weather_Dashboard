@@ -31,7 +31,6 @@ $(document).ready(function(){
             const windSpeed = response.wind.speed;
             const iconCode = response.weather[0].icon;
             const iconUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
-            console.log(iconUrl);
 
             // Transfer content to HTML
             $(".city").text(location + ", " +country);
@@ -68,18 +67,18 @@ $(document).ready(function(){
             .then(function(response3) {
                  // Transfer 5 days forcast in HTML
                 for (let i=0; i<5; i++){
-                    let dayI = moment().add(i,'days'). format('MM/DD/YYYY')// add 1 day
-                    let j = 8*i+3 // each day have 8 records (every 3hours) - picking up the 4rd one(index 3 at 12:00 PM)
-                    let temp_F = Math.round((response3.list[j].main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
-                    let temp_C = Math.round(response3.list[j].main.temp-273.15); // Kelvin to Celcius
-                    let hum = response3.list[j].main.humidity;
-                    let iconCode = response3.list[j].weather[0].icon;
-                    let dayId = "#day"+i;
-                    // let icon = "<img src=\""+iconUrl+"\" alt=\"Weather icon "+iconCode+"\" height=\"50\" width=\"50\">"
+                    const dayI = moment().add(i+1,'days'). format('MM/DD/YYYY')// add 1 day
+                    const j = 8*i+3 // each day have 8 records (every 3hours) - picking up the 4rd one(index 3 at 12:00 PM)
+                    const temp_F = Math.round((response3.list[j].main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
+                    const temp_C = Math.round(response3.list[j].main.temp-273.15); // Kelvin to Celcius
+                    const hum = response3.list[j].main.humidity;
+                    const dayId = "#day"+i;
+                    const iconCode3 = response3.list[j].weather[0].icon;
+                    const iconUrl3 = "http://openweathermap.org/img/wn/"+iconCode3+"@2x.png";
                     $(dayId).empty();
                     $(dayId).append("<h5>"+dayI+"<\h5>");
+                    $(dayId).append("<img id=\"image\" src=\""+iconUrl3+"\"width=\"50px\" height=\"50px\" alt=\"\">");
                     $(dayId).append("<p>Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>");
-                   
                    
 
                     
