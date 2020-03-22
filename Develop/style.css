@@ -1,10 +1,11 @@
 
 * {
     box-sizing: border-box;
+    line-height: 1.5;
   }
 
 body{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
     line-height: 1;
     padding-bottom: 20px;
@@ -62,11 +63,10 @@ button{
     margin: 0px;
     width: 35px;
     height: 28px;
-    float: left;
 }
 
 button:hover {
-    opacity: 1;
+    background: rgb(103, 167, 151);
   }
 
 
@@ -78,6 +78,15 @@ button:hover {
     border-radius: 10px;
     margin: 10px;
     color:black;
+}
+.location{
+    display: flexbox;
+    overflow: auto;
+    background-color: indigo;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 10px;
+      
 }
 .fiveDays{
     width: 70%;
