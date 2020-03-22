@@ -7,8 +7,7 @@ $(document).ready(function(){
         
         //City name input
         const city = $("#cityInput").val().trim()
-        // Add the city to search history in the first position
-        history.splice(0,0,city); 
+
         // API key
         const APIKey = "3ad59a1b75ec925455fe5cb8139345fa";
 
@@ -87,11 +86,25 @@ $(document).ready(function(){
              });
 
         });
+
+        
+        //Check if current city already in the history
+        var index = history.indexOf(city); 
+        if (index >-1){
+            //remove the duplicate if it exists
+            history.splice(index,1);
+        }
+
+
+        // Add the city to search history in the first position
+        history.splice(0,0,city); 
+        
+       
+
         //Transfer the city arry in html table
-        //for (let j=0; j<history.length; j++){
-            $("table").prepend("<tr><td>"+history[0]+"</td></tr>")
-            //console.log(history)
-            //console.log(history[j])
-        //}
-});
+        $("table").empty();
+        for (let j=0; j<history.length; j++){
+            $("table").append("<tr><td>"+history[j]+"</td></tr>")
+        }
+    });
 });
