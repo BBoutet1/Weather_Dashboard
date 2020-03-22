@@ -1,11 +1,12 @@
 $(document).ready(function(){
+
+    let history=[]; //search history array
+
     $( "#btn" ).click(function (event){
         event.preventDefault();
         
         //City name input
         const city = $("#cityInput").val().trim()
-
-    
         // API key
         const APIKey = "3ad59a1b75ec925455fe5cb8139345fa";
 
@@ -78,17 +79,16 @@ $(document).ready(function(){
                     $(dayId).empty();
                     $(dayId).append("<h5>"+dayI+"<\h5>");
                     $(dayId).append("<img id=\"image\" src=\""+iconUrl3+"\"width=\"50px\" height=\"50px\" alt=\"\">");
-                    $(dayId).append("<p>Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>");
-                   
-
-                    
+                    $(dayId).append("<p>Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>");    
                 }
                 console.log(response)
                 console.log(response3)
 
              });
-        
-            
+             // add city to search history in the first position
+             history.splice(0,0,city); 
+             console.log(history);
+                  
 
         });
     });
