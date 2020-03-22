@@ -51,11 +51,11 @@ aside{
   }
 
 .input-field:focus {
-    border: 2px solid rgb(132, 230, 205);
+    border: 2px solid #87CEEB;
   }
 
 button{
-    background: rgb(132, 230, 205);
+    background: #87CEEB;
     color: white;
     text-align: center;
     cursor: pointer;
@@ -82,13 +82,19 @@ button:hover {
 .location{
     display: flexbox;
     overflow: auto;
-    background-color: indigo;
+    background-color: rgb(43, 158, 204);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-bottom: 10px;
+    padding: 10px;
+    color: white;
       
 }
-.fiveDays{
+
+.currentWeather{
+    padding: 10px;
+}
+.forecast{
     width: 70%;
     height: 200px;
     float: left;
@@ -96,21 +102,24 @@ button:hover {
     border-radius: 10px;
     margin: 10px;
     padding: 20px;
-    display: flex;
-    justify-content: space-between;
+    font-size: 15px;
 }
-#period{
+h3{
+    text-align: center;
+}
+.fiveDays{
     width: 100%;
-    margin: 0 10px 0 10px;
-    
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .five{
-    background-color: rgb(132, 230, 205);
+    background-color: #87CEEB;
     border-radius: 10px;
-    margin: 5px;
-    width: 120px;
-    height: 150px;
+    min-width: 120px;
     float: left;
+    margin: 5px;
+    padding:5px;
 }
 
