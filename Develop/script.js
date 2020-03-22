@@ -12,10 +12,8 @@ $(document).ready(function(){
         // Building URL to query current day weather database
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
         city + "&appid="+ APIKey;
-
-       
         //current date
-        var today = moment().format('LL')
+        const today = moment().format('LL')
 
     
         // Here we run our AJAX call to the OpenWeatherMap API
@@ -31,10 +29,16 @@ $(document).ready(function(){
             const tempC = Math.round(response.main.temp-273.15);  // Kelvin to Celcius
             const humidity = response.main.humidity;
             const windSpeed = response.wind.speed;
+            const iconCode = response.weather[0].icon;
+            const iconUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
+            console.log(iconUrl);
 
             // Transfer content to HTML
             $(".city").text(location + ", " +country);
             $(".date").text(today);
+            $("#image").remove(); 
+            $(".iconeNdate").append("<img id=\"image\" src=\""+iconUrl+"\"width=\"50px\" height=\"50px\" alt=\"\">");
+
 
             $(".temp").text("Temperature: " + tempF+ " °F /"+ tempC+ " °C");
             $(".humidity").text("Humidity: " +humidity+" %");
@@ -64,14 +68,24 @@ $(document).ready(function(){
             .then(function(response3) {
                  // Transfer 5 days forcast in HTML
                 for (let i=0; i<5; i++){
+                    let dayI = moment().add(i,'days'). format('MM/DD/YYYY')// add 1 day
                     let j = 8*i+3 // each day have 8 records (every 3hours) - picking up the 4rd one(index 3 at 12:00 PM)
                     let temp_F = Math.round((response3.list[j].main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
                     let temp_C = Math.round(response3.list[j].main.temp-273.15); // Kelvin to Celcius
                     let hum = response3.list[j].main.humidity;
-                    let dayI = "#day"+i;
-                    $(dayI).html("<p>Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>");
-                    console.log(j)
+                    let iconCode = response3.list[j].weather[0].icon;
+                    let dayId = "#day"+i;
+                    // let icon = "<img src=\""+iconUrl+"\" alt=\"Weather icon "+iconCode+"\" height=\"50\" width=\"50\">"
+                    $(dayId).empty();
+                    $(dayId).append("<h5>"+dayI+"<\h5>");
+                    $(dayId).append("<p>Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>");
+                   
+                   
+
+                    
                 }
+                console.log(response)
+                console.log(response3)
 
              });
         

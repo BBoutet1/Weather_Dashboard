@@ -79,8 +79,12 @@ button:hover {
     margin: 10px;
     color:black;
 }
+.date{
+    float: left;
+    height: 50px;
+    line-height: 50px;
+}
 .location{
-    display: flexbox;
     overflow: auto;
     background-color: rgb(43, 158, 204);
     border-top-left-radius: 10px;
@@ -89,6 +93,10 @@ button:hover {
     padding: 10px;
     color: white;
       
+}
+
+.iconeNdate{
+    display: inline-block;
 }
 
 .currentWeather{
