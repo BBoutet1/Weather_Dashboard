@@ -1,6 +1,18 @@
 $(document).ready(function(){
 
+    //current date
+    const today = moment().format('LL');
+    $(".date").text(today);
+
+    //5-day forcecast dates
+    for (let i=0; i<5; i++){
+        let dayI = moment().add(i+1,'days'). format('MM/DD/YYYY')// add 1 day
+        let dayId = "#day"+i;
+        $(dayId).append("<h5>"+dayI+"<\h5>");   
+    }
+
     let history=[]; //search history array
+
 
     $( "#btn" ).click(function (event){
         event.preventDefault();
@@ -14,8 +26,7 @@ $(document).ready(function(){
         // Building URL to query current day weather database
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
         city + "&appid="+ APIKey;
-        //current date
-        const today = moment().format('LL')
+
 
     
         // Here we run our AJAX call to the OpenWeatherMap API
@@ -39,7 +50,6 @@ $(document).ready(function(){
 
             // Transfer content to HTML
             $(".city").text(location + ", " +country);
-            $(".date").text(today);
             $("#image").remove(); 
             $(".iconeNdate").append("<img id=\"image\" src=\""+iconUrl+"\"width=\"50px\" height=\"50px\" alt=\"\">");
 
@@ -72,12 +82,12 @@ $(document).ready(function(){
             .then(function(response3) {
                  // Transfer 5 days forcast in HTML
                 for (let i=0; i<5; i++){
-                    const dayI = moment().add(i+1,'days'). format('MM/DD/YYYY')// add 1 day
+                    dayI = moment().add(i+1,'days'). format('MM/DD/YYYY')// add 1 day
+                    dayId = "#day"+i;
                     const j = 8*i+3 // each day have 8 records (every 3hours) - picking up the 4rd one(index 3 at 12:00 PM)
                     const temp_F = Math.round((response3.list[j].main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
                     const temp_C = Math.round(response3.list[j].main.temp-273.15); // Kelvin to Celcius
                     const hum = response3.list[j].main.humidity;
-                    const dayId = "#day"+i;
                     const iconCode3 = response3.list[j].weather[0].icon;
                     const iconUrl3 = "http://openweathermap.org/img/wn/"+iconCode3+"@2x.png";
                     $(dayId).empty();
@@ -112,5 +122,11 @@ $(document).ready(function(){
         for (let j=0; j<history.length; j++){
             $("table").append("<tr><td>"+history[j]+"</td></tr>")
         }
+
+        //  Clear search History
+        $( ".clearHistory" ).click(function (){
+            $("table").html("No history");
+            history=[]
+        });
     });
 });

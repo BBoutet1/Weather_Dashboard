@@ -15,6 +15,7 @@ body{
     overflow: auto;
     display: flexbox;
     width: 100%; 
+    min-width: 320px;
     background-color: rgb(231, 229, 229);
     position: absolute;
     bottom: 0px;
@@ -24,6 +25,7 @@ body{
 header {
     background-color: rgba(0, 0, 0, 0.411);
     width: 100%;
+    min-width: 320px;
     height: 60px;
 }
 main{
@@ -69,8 +71,14 @@ input {
     width: 100%;
   }
 
-input:focus {
+input:focus
+ {
     border: 2px solid #87CEEB;
+  }
+
+  tr:hover{
+    border: 2px solid #87CEEB;
+
   }
 
 button{
@@ -81,6 +89,13 @@ button{
     margin: 0px;
     width: 35px;
     height: 28px;
+}
+.clearHistory{
+  width: 40px;
+  height: 28px;
+  color: red;
+  line-height: 28px;
+  margin-bottom: 2px;
 }
 
 button:hover {
@@ -194,6 +209,10 @@ p{
     .five{
         width: 100%;
         padding: 5px;
+    }
+    .currentWeather{
+        height: 120px;
+
     }
     .forecast h5, .five p, h3{
         text-align: center;
