@@ -6,7 +6,7 @@ $(document).ready(function(){
         event.preventDefault();
         
         //City name input
-        const city = $("#cityInput").val().trim()
+        const city = $("input").val().trim()
 
         // API key
         const APIKey = "3ad59a1b75ec925455fe5cb8139345fa";
@@ -25,6 +25,9 @@ $(document).ready(function(){
         })
         // We store all of the retrieved data inside of an object called "response"
         .then(function(response) {
+
+            console.log(response);
+
             const location = response.name;
             const country = response.sys.country;
             const tempF = Math.round((response.main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
@@ -101,13 +104,9 @@ $(document).ready(function(){
         }
 
 
-
-
         // Add the city to search history in the first position
         history.splice(0,0,city); 
         
-       
-
         //Transfer the city arry in html table
         $("table").empty();
         for (let j=0; j<history.length; j++){

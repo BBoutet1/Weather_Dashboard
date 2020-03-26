@@ -12,45 +12,45 @@
     <header>
         <h1>Wheather Dashboard</h1>
     </header>
-    <main>
-        <aside>
-            <form>
-                <label>Search for a city</label><br>
-                <div class="input-container" >
-                    <input id="cityInput" class="input-field" type="text">
-                    <button id="btn" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </form>
-            <table></table>
-        </aside>
-        <section class="today">
-            <div class="location">
+    <div class="myContainer">
+        <form>
+            <label>Search for a city</label>
+            <div class="input-container" >
+                <input type="text">
+                <button id="btn" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <label>Search hystory</label>
+            <table>
+                <tr><td>No search history</td></tr>
+            </table>
+        </form>
+        <main>
+            <section class="location">
                 <h2 class="city"></h2>
                 <div class="iconeNdate">
                     <h5 class="date"></h5>
                 </div>
-            </div>
-            <div class="currentWeather">
+            </section>
+            <section class="currentWeather">
                 <p class="temp"></p>
                 <p class="humidity"></p>
                 <p class="wind"></p>
                 <p class="uvIndex"></p>
-            </div>
-        </section>
-        <section class="forecast">
-            <h3>5 days forecast</h3>
-            <div class="fiveDays">
-                <div id="day0" class="five"></div>
-                <div id="day1" class="five"></div>
-                <div id="day2" class="five"></div>
-                <div id="day3" class="five"></div>
-                <div id="day4" class="five"></div>
-            </div>
-        </section>
-    </main>
-
+            </section>
+            <section class="forecast">
+                <h3>5-day forecast</h3>
+                <div class="fiveDays">
+                    <div id="day0" class="five"></div>
+                    <div id="day1" class="five"></div>
+                    <div id="day2" class="five"></div>
+                    <div id="day3" class="five"></div>
+                    <div id="day4" class="five"></div>
+                </div>
+            </section>
+        </main>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="Develop/script.js"></script>
