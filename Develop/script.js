@@ -1,7 +1,9 @@
 $(document).ready(function(){
+    const today = moment().format('LL'); // current date
+    let city=""; // city name
+    let history=[]; //search history array
 
-    //current date
-    const today = moment().format('LL');
+    //Transfer city name to html
     $(".date").text(today);
 
     //5-day forcecast dates
@@ -10,16 +12,28 @@ $(document).ready(function(){
         let dayId = "#day"+i;
         $(dayId).append("<h5>"+dayI+"<\h5>");   
     }
-
-    let history=[]; //search history array
-
-
+    
+    //Submitting the city name from the form input
     $( "#btn" ).click(function (event){
         event.preventDefault();
-        
-        //City name input
-        const city = $("input").val().trim()
+        //Grabbing the city name from the input field
+        city = $("input").val().trim();
+        processRequest(city);
+    });
 
+    //Selecting the city name from the history
+    $( "table" ).click(function (event){
+        let id =event.target.id;
+        let elmtId="#"+id;
+        console.log(id+", "+elmtId)
+        //City name selected in the history
+        city =$(elmtId).text();
+        processRequest(city);
+    })
+
+    //Processing acquiring and processing weather data
+    function processRequest(city){
+        console.log(city);
         // API key
         const APIKey = "3ad59a1b75ec925455fe5cb8139345fa";
 
@@ -36,9 +50,6 @@ $(document).ready(function(){
         })
         // We store all of the retrieved data inside of an object called "response"
         .then(function(response) {
-
-            console.log(response);
-
             const location = response.name;
             const country = response.sys.country;
             const tempF = Math.round((response.main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
@@ -120,13 +131,13 @@ $(document).ready(function(){
         //Transfer the city arry in html table
         $("table").empty();
         for (let j=0; j<history.length; j++){
-            $("table").append("<tr><td>"+history[j]+"</td></tr>")
+            $("table").append("<tr class=\"history\"><td id=\""+history[j]+"\">"+history[j]+"</td></tr>")
         }
 
         //  Clear search History
         $( ".clearHistory" ).click(function (){
-            $("table").html("No history");
+            $("table").html("<tr><td>No history</td></tr>");
             history=[]
         });
-    });
+    }
 });
