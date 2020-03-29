@@ -3,8 +3,24 @@ $(document).ready(function(){
     let city=""; // city name
     let history=[]; //search history array
 
-    //Transfer city name to html
-    $(".date").text(today);
+     //Transfer date to html
+     $(".date").text(today);
+
+    //Retrieving previously saved search history
+    history = JSON.parse(localStorage.getItem("histKey") || "[]");
+
+    //Write history  in html 
+    function historyToHtml(){
+        if(history.length>0){
+            $("table").empty();       
+            for (let j=0; j<history.length; j++){
+                $("table").append("<tr class=\"history\"><td id=\""+history[j]+"\">"+history[j]+"</td></tr>")
+            }
+        }
+    }
+    historyToHtml()
+
+   
 
     //5-day forcecast dates
     for (let i=0; i<5; i++){
@@ -42,8 +58,6 @@ $(document).ready(function(){
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
         city + "&appid="+ APIKey;
 
-
-    
         // Here we run our AJAX call to the OpenWeatherMap API
         $.ajax({
         url: queryURL,
@@ -68,11 +82,9 @@ $(document).ready(function(){
             const iconUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
 
             // Transfer content to HTML
-            $(".city").text(location + ", " +country);
-            $("#image").remove(); 
+            $(".city").text(location + ", " +country); //city name
+            $("#image").remove(); // remove previous current weather icon
             $(".iconeNdate").append("<img id=\"image\" src=\""+iconUrl+"\"width=\"50px\" height=\"50px\" alt=\"\">");
-
-
             $(".temp").text("Temperature: " + tempF+ " °F /"+ tempC+ " °C");
             $(".humidity").text("Humidity: " +humidity+" %");
             $(".wind").text("Wind Speed: " + windSpeed+" MPH");
@@ -116,9 +128,15 @@ $(document).ready(function(){
                     }
 
                 });
+            
+ 
 
-                       //Check if current city already in the history
+           
+    
+
+            //Check if current city already in the history
             var index = history.indexOf(city); 
+
             if (index >-1){
                 //remove the duplicate if it exists
                 history.splice(index,1);
@@ -131,23 +149,20 @@ $(document).ready(function(){
 
             // Add the city to search history in the first position
             history.splice(0,0,city); 
-            
-            //Transfer the city arry in html table
-            $("table").empty();
-            for (let j=0; j<history.length; j++){
-                $("table").append("<tr class=\"history\"><td id=\""+history[j]+"\">"+history[j]+"</td></tr>")
-            }
 
-            //  Clear search History
-            $( ".clearHistory" ).click(function (){
-                $("table").html("<tr><td>No history</td></tr>");
-                history=[];
-             });
+            //Local storage of history array
+            localStorage.setItem("histKey", JSON.stringify(history))
+            
+            //Write in html table
+            historyToHtml()
             
         };
 
         function ajaxError(){
-            $(".city").text("City of "+city+ " not found");
+            //If city input not in the database
+            if(city!==""){
+                $(".city").text("City of "+city+ " not found");
+            }
             $(".temp").text("Temperature:");
             $(".humidity").text("Humidity:");
             $(".wind").text("Wind Speed:");
@@ -155,9 +170,13 @@ $(document).ready(function(){
             $("img").remove();
             $(".tempFive").remove();
         }
-
- 
-
         
     }
+
+      //  Clear search History
+      $( ".clearHistory" ).click(function (){
+        localStorage.removeItem("histKey");
+        history=[];
+        $("table").html("<tr><td>No history</td></tr>");
+     });
 });

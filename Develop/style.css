@@ -13,7 +13,6 @@ body{
 
 .myContainer{
     overflow: auto;
-    display: flexbox;
     width: 100%; 
     min-width: 320px;
     background-color: rgb(231, 229, 229);
