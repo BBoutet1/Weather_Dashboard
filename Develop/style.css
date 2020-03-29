@@ -115,8 +115,8 @@ tr{
     margin: 0px;
 }
 
-tr:hover{
-    border: 2px solid #87CEEB;
+.history:hover{
+    border: 3px solid #87CEEB;
   }
 
 .location{
