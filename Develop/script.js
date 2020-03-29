@@ -41,7 +41,6 @@ $(document).ready(function(){
     $( "table" ).click(function (event){
         let id =event.target.id;
         let elmtId="#"+id;
-        console.log(id+", "+elmtId)
         //City name selected in the history
         city =$(elmtId).text();
         processRequest(city);
@@ -50,7 +49,6 @@ $(document).ready(function(){
 
     //Processing acquiring and processing weather data
     function processRequest(city){
-        console.log(city);
         // API key
         const APIKey = "3ad59a1b75ec925455fe5cb8139345fa";
 
@@ -71,6 +69,7 @@ $(document).ready(function(){
 
         // We store all of the retrieved data inside of an object called "response"
         function ajaxSuccess(response) {
+            console.log(response)
             const location = response.name;
             city = location // correct city name orthograph (try Lisboa for Lisbon)
             const country = response.sys.country;
@@ -100,7 +99,8 @@ $(document).ready(function(){
                 .then(function(response2) {
                     const uvIndex = response2.value;
                     // Transfer UV index to HTML
-                    $(".uvIndex").text("UV index: " + uvIndex);     
+                    $(".uvIndex").text("UV index: " + uvIndex);  
+                    console.log(response2)   
              });
 
             // Building URL to query current the 5 days forcast database
