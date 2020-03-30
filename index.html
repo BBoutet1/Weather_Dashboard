@@ -13,7 +13,9 @@
         <h1>Weather Dashboard</h1>
     </header>
     <div class="myContainer">
+        
         <form>
+            <!-- input -->
             <label>Search for a city</label>
             <div class="input-container" >
                 <input type="text">
@@ -21,9 +23,8 @@
                     <i class="fa fa-search"></i>
                 </button>
             </div>
-            <label>Search hystory
-
-            </label>
+            <!-- search history table history -->
+            <label>Search hystory</label>
             <table>
                 <button type="button" class="clearHistory">
                     <i class=" fas fa-eraser"></i>
@@ -32,18 +33,21 @@
             </table>
         </form>
         <main>
+            <!-- Current weather city and date -->
             <section class="location">
                 <h2 class="city">Your city</h2>
                 <div class="iconeNdate">
                     <h5 class="date"> </h5>
                 </div>
             </section>
+            <!-- Current weather data -->
             <section class="currentWeather">
                 <p class="temp"> Temperature:</p>
                 <p class="humidity">Humidity:</p>
                 <p class="wind">Wind Speed:</p>
                 <p class="uvIndex">UV index:</p>
             </section>
+            <!-- 5-day forecast -->
             <section class="forecast">
                 <h3>5-day forecast</h3>
                 <div class="fiveDays">

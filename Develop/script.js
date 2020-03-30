@@ -1,15 +1,21 @@
 $(document).ready(function(){
-    const today = moment().format('LL'); // current date
-    let city=""; // city name
-    let history=[]; //search history array
 
-     //Transfer date to html
+    // current date
+    const today = moment().format('LL'); 
+
+    //City input value
+    let city="";
+
+    //Sarch history table
+    let history=[];
+
+    //Transfering date to html
      $(".date").text(today);
 
-    //Retrieving previously saved search history
+    //Retrieving previously saved search history table
     history = JSON.parse(localStorage.getItem("histKey") || "[]");
 
-    //Write history  in html 
+    //Function to write history table in html 
     function historyToHtml(){
         if(history.length>0){
             $("table").empty();       
@@ -20,35 +26,44 @@ $(document).ready(function(){
     }
     historyToHtml()
 
-   
-
-    //5-day forcecast dates
+    //Defining and wrintin the 5-day forcecast dates in html
     for (let i=0; i<5; i++){
         let dayI = moment().add(i+1,'days'). format('MM/DD/YYYY')// add 1 day
         let dayId = "#day"+i;
         $(dayId).append("<h5>"+dayI+"<\h5>");   
     }
     
-    //Submitting the city name from the form input
+    //Submitting the written city input
     $( "#btn" ).click(function (event){
+
         event.preventDefault();
+
         //Grabbing the city name from the input field
         city = $("input").val().trim();
+
+        //Retrieving and processing data from API
         processRequest(city);
     });
 
-    //Selecting the city name from the history
+    //Submitting the city name by selecting in the search history
     $( "table" ).click(function (event){
+
+        //City identification
         let id =event.target.id;
         let elmtId="#"+id;
-        //City name selected in the history
+
+        //Grabbing the city name  from search history
         city =$(elmtId).text();
+
+        //Retrieving and processing data from API
         processRequest(city);
+
     })
 
 
-    //Processing acquiring and processing weather data
+    //Function for retrieving and processing weather data
     function processRequest(city){
+
         // API key
         const APIKey = "3ad59a1b75ec925455fe5cb8139345fa";
 
@@ -58,32 +73,31 @@ $(document).ready(function(){
 
         // Here we run our AJAX call to the OpenWeatherMap API
         $.ajax({
-        url: queryURL,
+            url: queryURL,
 
-            //Successfull ajax call
+            //Successfull ajax call function
             success:ajaxSuccess,
             
-            //Unsuccessfull ajax call 
+            //Unsuccessfull ajax call function
             error: ajaxError,
-        })   
+        });   
 
-        // We store all of the retrieved data inside of an object called "response"
+        // If successful We store all of the retrieved data inside of an object called "response"
         function ajaxSuccess(response) {
-            console.log(response)
-            const location = response.name;
-            city = location // correct city name orthograph (try Lisboa for Lisbon)
-            const country = response.sys.country;
+            const location = response.name; // city name from API
+            city = location // correcting city name orthograph (i.e. Lisbon for Lisboa)
+            const country = response.sys.country; // Country code
             const tempF = Math.round((response.main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
             const tempC = Math.round(response.main.temp-273.15);  // Kelvin to Celcius
             const humidity = response.main.humidity;
             const windSpeed = response.wind.speed;
             const iconCode = response.weather[0].icon;
-            const iconUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
+            const iconUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png"; // weather icon image
 
             // Transfer content to HTML
             $(".city").text(location + ", " +country); //city name
             $("#image").remove(); // remove previous current weather icon
-            $(".iconeNdate").append("<img id=\"image\" src=\""+iconUrl+"\"width=\"50px\" height=\"50px\" alt=\"\">");
+            $(".iconeNdate").append("<img id=\"image\" src=\""+iconUrl+"\"width=\"50px\" height=\"50px\" alt=\"\">"); // weather icon
             $(".temp").text("Temperature: " + tempF+ " °F /"+ tempC+ " °C");
             $(".humidity").text("Humidity: " +humidity+" %");
             $(".wind").text("Wind Speed: " + windSpeed+" MPH");
@@ -91,26 +105,28 @@ $(document).ready(function(){
             // Building URL to query UV index database
             const queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?appid="+APIKey+"&lat="
             +response.coord.lat+"&lon="+response.coord.lon;
-            $.ajax({
-                url: queryURL2,
-                method: "GET"
-                })
-                // We store UV retrieved data inside of an object called "response2"
-                .then(function(response2) {
-                    const uvIndex = response2.value;
-                    // Transfer UV index to HTML
-                    $(".uvIndex").html("UV index: <p class =\"value\">"+ uvIndex+"</p> " ); 
-                    if (uvIndex<5) { // passed timeblocks
-                        $(".value").addClass("favorable"); 
-                    }
-                    else if(uvIndex>5 && uvIndex>7){ // present timeblock
-                        $(".value").addClass("moderate"); 
-                    }  
-                    else{ // future timeblock
-                        $(".value").addClass("severe"); 
-                    }
-                    console.log(response2)   
-             });
+        $.ajax({
+            url: queryURL2,
+            method: "GET"
+            })
+            // We store UV retrieved data inside of an object called "response2"
+            .then(function(response2) {
+                const uvIndex = response2.value;
+
+                // Transfer UV index to HTML
+                $(".uvIndex").html("UV index: <p class =\"value\">"+ uvIndex+"</p> " );
+                
+                //UV weathe condition color code
+                if (uvIndex<5) {
+                    $(".value").addClass("favorable"); 
+                }
+                else if(uvIndex>5 && uvIndex>7){ // present timeblock
+                    $(".value").addClass("moderate"); 
+                }  
+                else{ // future timeblock
+                    $(".value").addClass("severe"); 
+                }
+            });
 
             // Building URL to query current the 5 days forcast database
             const queryURL3 = "https://api.openweathermap.org/data/2.5/forecast?q="+ city+"&appid="+APIKey;
@@ -124,7 +140,7 @@ $(document).ready(function(){
                     for (let i=0; i<5; i++){
                         dayI = moment().add(i+1,'days'). format('MM/DD/YYYY')// add 1 day
                         dayId = "#day"+i;
-                        const j = 8*i+3 // each day have 8 records (every 3hours) - picking up the 4rd one(index 3 at 12:00 PM)
+                        const j = 8*i+3 // each day have 8 records (every 3hours) - picking up the 4rd record (index 3 at 12:00 PM)
                         const temp_F = Math.round((response3.list[j].main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
                         const temp_C = Math.round(response3.list[j].main.temp-273.15); // Kelvin to Celcius
                         const hum = response3.list[j].main.humidity;
@@ -136,17 +152,9 @@ $(document).ready(function(){
                         $(dayId).append("<p class =\"tempFive\">Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>"); 
 
                     }
-
                 });
-            
- 
-
-           
-    
-
-            //Check if current city already in the history
+            //Removing current requested city from search history to prevent duplicate
             var index = history.indexOf(city); 
-
             if (index >-1){
                 //remove the duplicate if it exists
                 history.splice(index,1);
@@ -162,14 +170,13 @@ $(document).ready(function(){
 
             //Local storage of history array
             localStorage.setItem("histKey", JSON.stringify(history))
-            
-            //Write in html table
-            historyToHtml()
-            
+
+            //Write search history in html table
+            historyToHtml();
         };
 
+        //Function if the request is uncessfull (city not in database)
         function ajaxError(){
-            //If city input not in the database
             if(city!==""){
                 $(".city").text("City of "+city+ " not found");
             }
@@ -180,13 +187,12 @@ $(document).ready(function(){
             $("img").remove();
             $(".tempFive").remove();
         }
-        
     }
 
-      //  Clear search History
-      $( ".clearHistory" ).click(function (){
+    //  Clear search History
+    $( ".clearHistory" ).click(function (){
         localStorage.removeItem("histKey");
         history=[];
         $("table").html("<tr><td>No history</td></tr>");
-     });
+    });
 });

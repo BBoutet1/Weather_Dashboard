@@ -10,7 +10,7 @@ body{
     font-size: 18px;
     line-height: 1;
 }
-
+/* After and below the header */
 .myContainer{
     overflow: auto;
     width: 100%; 
@@ -27,6 +27,8 @@ header {
     min-width: 320px;
     height: 60px;
 }
+
+/* Contains Current weather and 5-day forecast on the right */
 main{
     width: 75%;
     float: left;
@@ -59,22 +61,24 @@ h6{
     margin-top: 8px;
 }
 
-
+/* Contains search button and input field */
 .input-container{
     display:inline-flex;
     width: 100%;
     max-width: 280px;
 }
+
+/* Search input field */
 input {
     margin: 0px;
     width: 100%;
   }
-
 input:focus
  {
     border: 2px solid #87CEEB;
   }
 
+  /* Search button */
 button{
     background: #87CEEB;
     color: white;
@@ -84,18 +88,11 @@ button{
     width: 35px;
     height: 28px;
 }
-.clearHistory{
-  width: 40px;
-  height: 28px;
-  color: red;
-  line-height: 28px;
-  margin-bottom: 2px;
-}
-
 button:hover {
     background: rgb(103, 167, 151);
   }
 
+/* Sear history table */
 table{
     width: 100%;
     max-width: 280px;
@@ -114,10 +111,21 @@ tr{
     margin: 0px;
 }
 
+/* Mouse over on a row of search history  table*/
 .history:hover{
     border: 3px solid #87CEEB;
   }
 
+  /* Clear history button */
+.clearHistory{
+    width: 40px;
+    height: 28px;
+    color: red;
+    line-height: 28px;
+    margin-bottom: 2px;
+  }
+
+/* City, date and icon main container */
 .location{
     width: 100%;
     background-color: rgb(43, 158, 204);
@@ -126,18 +134,26 @@ tr{
     padding-bottom: 0px;
     color: white;    
 }
+
+/* Current date */
 .date{
     float: left;
     height: 50px;
     line-height: 50px;
 }
+
+/* Current weather data date and icone inline */
 .iconeNdate{
     display: inline-block;
 }
+
+/* Current weather data container */
 .currentWeather{
     min-height: 120px;
     padding: 10px;
 }
+
+/* 5-day forecast main container */
 .forecast{
     border: 2px solid rgb(231, 229, 229);
     border-radius: 10px;
@@ -146,6 +162,8 @@ tr{
     font-size: 15px;
     overflow: auto;
 }
+
+/* 5-day forecast secondary container */
 .fiveDays{
     width: 100%;
     display:flex;
@@ -153,6 +171,7 @@ tr{
     flex-wrap: wrap;
 }
 
+/* Each of the 5-day forecast container */
 .five{
     background-color: #87CEEB;
     border-radius: 10px;
@@ -170,7 +189,6 @@ p{
 }
 
 /* UV index layout and color code */
-
 .uvIndex p{
     display: inline;
     text-align: center;
