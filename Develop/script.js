@@ -53,7 +53,7 @@ $(document).ready(function(){
         let elmtId="#"+id;
 
         //Grabbing the city name  from search history
-        city =$(elmtId).text();
+        city =$(elmtId).val();
 
         //Retrieving and processing data from API
         processRequest(city);
@@ -105,26 +105,26 @@ $(document).ready(function(){
             // Building URL to query UV index database
             const queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?appid="+APIKey+"&lat="
             +response.coord.lat+"&lon="+response.coord.lon;
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-            })
-            // We store UV retrieved data inside of an object called "response2"
-            .then(function(response2) {
-                const uvIndex = response2.value;
+            $.ajax({
+                url: queryURL2,
+                method: "GET"
+                })
+                // We store UV retrieved data inside of an object called "response2"
+                .then(function(response2) {
+                    const uvIndex = response2.value;
 
-                // Transfer UV index to HTML
-                $(".uvIndex").html("UV index: <p class =\"value\">"+ uvIndex+"</p> " );
-                
-                //UV weathe condition color code
-                if (uvIndex<5) {
-                    $(".value").addClass("favorable"); 
-                }
-                else if(uvIndex>5 && uvIndex>7){ // present timeblock
-                    $(".value").addClass("moderate"); 
-                }  
-                else{ // future timeblock
-                    $(".value").addClass("severe"); 
+                    // Transfer UV index to HTML
+                    $(".uvIndex").html("UV index: <p class =\"value\">"+ uvIndex+"</p> " );
+                    
+                    //UV weathe condition color code
+                    if (uvIndex<5) {
+                        $(".value").addClass("favorable"); 
+                    }
+                    else if(uvIndex>11){ // present timeblock
+                        $(".value").addClass("severe"); 
+                    }  
+                    else{ // future timeblock
+                        $(".value").addClass("moderate"); 
                 }
             });
 
@@ -152,7 +152,7 @@ $(document).ready(function(){
                         $(dayId).append("<p class =\"tempFive\">Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>"); 
 
                     }
-                });
+            });
             //Removing current requested city from search history to prevent duplicate
             var index = history.indexOf(city); 
             if (index >-1){

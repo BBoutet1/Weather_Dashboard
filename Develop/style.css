@@ -202,7 +202,7 @@ p{
 .moderate{
     background-color: orange;
 }
-.sever{background-color: red;}
+.severe{background-color: red;}
 
 /* Media query */
 @media only screen and (max-width: 1000px) {
