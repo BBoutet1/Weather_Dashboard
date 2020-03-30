@@ -99,7 +99,16 @@ $(document).ready(function(){
                 .then(function(response2) {
                     const uvIndex = response2.value;
                     // Transfer UV index to HTML
-                    $(".uvIndex").text("UV index: " + uvIndex);  
+                    $(".uvIndex").html("UV index: <p class =\"value\">"+ uvIndex+"</p> " ); 
+                    if (uvIndex<5) { // passed timeblocks
+                        $(".value").addClass("favorable"); 
+                    }
+                    else if(uvIndex>5 && uvIndex>7){ // present timeblock
+                        $(".value").addClass("moderate"); 
+                    }  
+                    else{ // future timeblock
+                        $(".value").addClass("severe"); 
+                    }
                     console.log(response2)   
              });
 
@@ -124,7 +133,8 @@ $(document).ready(function(){
                         $(dayId).empty();
                         $(dayId).append("<h5>"+dayI+"<\h5>");
                         $(dayId).append("<img src=\""+iconUrl3+"\"width=\"50px\" height=\"50px\" alt=\"\">");
-                        $(dayId).append("<p class =\"tempFive\">Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>");    
+                        $(dayId).append("<p class =\"tempFive\">Temp: " + temp_F+ " °F /"+ temp_C+ " °C<br> Humidity: " +hum+" %</P>"); 
+
                     }
 
                 });
