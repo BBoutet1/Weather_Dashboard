@@ -48,15 +48,12 @@ $(document).ready(function(){
     //Submitting the city name by selecting in the search history
     $( "table" ).click(function (event){
 
-        //City identification
-        let id =event.target.id;
-        let elmtId="#"+id;
-
-        //Grabbing the city name  from search history
-        city =$(elmtId).val();
+        //History cities names are history rows id
+        city =event.target.id;
 
         //Retrieving and processing data from API
         processRequest(city);
+    
 
     })
 
@@ -71,6 +68,8 @@ $(document).ready(function(){
         const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
         city + "&appid="+ APIKey;
 
+       
+
         // Here we run our AJAX call to the OpenWeatherMap API
         $.ajax({
             url: queryURL,
@@ -84,8 +83,7 @@ $(document).ready(function(){
 
         // If successful We store all of the retrieved data inside of an object called "response"
         function ajaxSuccess(response) {
-            const location = response.name; // city name from API
-            city = location // correcting city name orthograph (i.e. Lisbon for Lisboa)
+            city = response.name; // city name from API
             const country = response.sys.country; // Country code
             const tempF = Math.round((response.main.temp-273.15)*9/5 + 32); // Kelvin to Fahrenheit
             const tempC = Math.round(response.main.temp-273.15);  // Kelvin to Celcius
@@ -95,7 +93,7 @@ $(document).ready(function(){
             const iconUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png"; // weather icon image
 
             // Transfer content to HTML
-            $(".city").text(location + ", " +country); //city name
+            $(".city").text(city + ", " +country); //city name
             $("#image").remove(); // remove previous current weather icon
             $(".iconeNdate").append("<img id=\"image\" src=\""+iconUrl+"\"width=\"50px\" height=\"50px\" alt=\"\">"); // weather icon
             $(".temp").text("Temperature: " + tempF+ " °F /"+ tempC+ " °C");

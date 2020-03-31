@@ -53,6 +53,7 @@ form{
     padding: 5px;
     float: left;
     overflow: auto;
+    border-right: 2px solid rgb(231, 229, 229);
 }
 label,
 h6{
