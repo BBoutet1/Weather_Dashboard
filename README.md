@@ -1,6 +1,6 @@
 ## Weather Dashboard
 
-This web application retrieves data from the [OpenWeather API](https://openweathermap.org/api) Third-party API  to build a weather dashboard that runs in the browser and feature dynamically updated HTML and CSS.
+This web application retrieves data from the [OpenWeather](https://openweathermap.org/api) Third-party API  to build a weather dashboard that runs in the browser and feature dynamically updated HTML and CSS.
 
 weather data are retrieved from the API  for the city input. `localStorage`  is used to store search history.
 
