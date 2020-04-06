@@ -1,24 +1,13 @@
-
 * {
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
-  }
+}
 
-body{
+body {
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
     line-height: 1;
-}
-/* After and below the header */
-.myContainer{
-    overflow: auto;
-    width: 100%; 
-    min-width: 320px;
-    background-color: rgb(231, 229, 229);
-    position: absolute;
-    bottom: 0px;
-    top: 60px;
 }
 
 header {
@@ -26,13 +15,30 @@ header {
     width: 100%;
     min-width: 320px;
     height: 60px;
+    position: fixed;
+    top: 0px;
 }
 
+
+/* After and below the header */
+
+.myContainer {
+    overflow: auto;
+    width: 100%;
+    min-width: 320px;
+    background-color: rgb(231, 229, 229);
+    position: absolute;
+    bottom: 0px;
+    top: 60px;
+}
+
+
 /* Contains Current weather and 5-day forecast on the right */
-main{
+
+main {
     width: 75%;
     float: left;
-    color:black;
+    color: black;
     overflow: auto;
     background: white;
     position: absolute;
@@ -41,13 +47,13 @@ main{
     right: 0px;
 }
 
-h1{
+h1 {
     line-height: 60px;
     color: white;
     text-align: center;
 }
 
-form{
+form {
     width: 25%;
     min-width: 120px;
     padding: 5px;
@@ -55,32 +61,39 @@ form{
     overflow: auto;
     border-right: 2px solid rgb(231, 229, 229);
 }
+
 label,
-h6{
+h6 {
     width: 100%;
     margin: 0px;
     margin-top: 8px;
 }
 
+
 /* Contains search button and input field */
-.input-container{
-    display:inline-flex;
+
+.input-container {
+    display: inline-flex;
     width: 100%;
     max-width: 280px;
 }
 
+
 /* Search input field */
+
 input {
     margin: 0px;
     width: 100%;
-  }
-input:focus
- {
-    border: 2px solid #87CEEB;
-  }
+}
 
-  /* Search button */
-button{
+input:focus {
+    border: 2px solid #87CEEB;
+}
+
+
+/* Search button */
+
+button {
     background: #87CEEB;
     color: white;
     text-align: center;
@@ -89,12 +102,15 @@ button{
     width: 35px;
     height: 28px;
 }
+
 button:hover {
     background: rgb(103, 167, 151);
-  }
+}
+
 
 /* Sear history table */
-table{
+
+table {
     width: 100%;
     max-width: 280px;
     margin: 0px;
@@ -102,7 +118,8 @@ table{
     border: 1px solid rgba(0, 0, 0, 0.411);
     border-bottom: 0px
 }
-tr{
+
+tr {
     width: 100%;
     height: 28px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.411);
@@ -112,50 +129,64 @@ tr{
     margin: 0px;
 }
 
-/* Mouse over on a row of search history  table*/
-.history:hover{
-    border: 3px solid #87CEEB;
-  }
 
-  /* Clear history button */
-.clearHistory{
+/* Mouse over on a row of search history  table*/
+
+.history:hover {
+    border: 3px solid #87CEEB;
+}
+
+
+/* Clear history button */
+
+.clearHistory {
     width: 40px;
     height: 28px;
     color: red;
     line-height: 28px;
     margin-bottom: 2px;
-  }
+}
+
 
 /* City, date and icon main container */
-.location{
+
+.location {
     width: 100%;
     background-color: rgb(43, 158, 204);
     margin-bottom: 10px;
     padding: 10px;
     padding-bottom: 0px;
-    color: white;    
+    color: white;
 }
 
+
 /* Current date */
-.date{
+
+.date {
     float: left;
     height: 50px;
     line-height: 50px;
 }
 
+
 /* Current weather data date and icone inline */
-.iconeNdate{
+
+.iconeNdate {
     display: inline-block;
 }
 
+
 /* Current weather data container */
-.currentWeather{
+
+.currentWeather {
     min-height: 120px;
     padding: 10px;
 }
 
+
 /* 5-day forecast main container */
-.forecast{
+
+.forecast {
     border: 2px solid rgb(231, 229, 229);
     border-radius: 10px;
     margin: 10px;
@@ -164,16 +195,20 @@ tr{
     overflow: auto;
 }
 
+
 /* 5-day forecast secondary container */
-.fiveDays{
+
+.fiveDays {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
+
 /* Each of the 5-day forecast container */
-.five{
+
+.five {
     background-color: #87CEEB;
     border-radius: 10px;
     width: 18%;
@@ -181,94 +216,97 @@ tr{
     height: 145px;
     margin: 5px;
     margin-bottom: 10px;
-    padding:5px;
+    padding: 5px;
 }
 
-p{
+p {
     margin: 0px;
     line-height: 1.5;
 }
 
+
 /* UV index layout and color code */
-.uvIndex p{
+
+.uvIndex p {
     display: inline;
     text-align: center;
     padding: 5px;
     border-radius: 5px;
 }
-.favorable{
+
+.favorable {
     background-color: green;
 }
 
-.moderate{
+.moderate {
     background-color: orange;
 }
-.severe{background-color: red;}
+
+.severe {
+    background-color: red;
+}
+
 
 /* Media query */
+
 @media only screen and (max-width: 1000px) {
-    .five{
+    .five {
         width: 24%;
     }
-
 }
 
 @media only screen and (max-width: 820px) {
-    .five{
+    .five {
         width: 32%;
     }
-
 }
 
-
 @media only screen and (max-width: 660px) {
-    .five{
+    .five {
         width: 32%;
     }
-
 }
 
 @media only screen and (max-width: 480px) {
-    .five{
+    .five {
         width: 48%;
     }
-
     main {
         width: auto;
         position: absolute;
         left: 130px;
     }
     .currentWeather,
-    .five{
+    .five {
         width: 100%;
         padding: 4px;
     }
-    .currentWeather{
+    .currentWeather {
         overflow: auto;
-
     }
-    .forecast h5, .five p, h3{
+    .forecast h5,
+    .five p,
+    h3 {
         text-align: center;
     }
-    .five img{
+    .five img {
         float: none;
         margin-left: 31%;
     }
 }
+
 @media only screen and (max-width: 360px) {
-    main{
+    main {
         left: 120px;
     }
     h1 {
-      font-size: 32px;
+        font-size: 32px;
     }
- 
-    h3,h2{
+    h3,
+    h2 {
         font-size: 22px;
     }
-    h5{
+    h5 {
         font-size: 18px;
     }
-
 }
-
